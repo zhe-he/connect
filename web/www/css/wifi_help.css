@@ -1,0 +1,92 @@
+@charset "UTF-8";
+/* CSS Document */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /*font-size: 20px;*/
+  font-family: sans-serif, Tahoma, Helvetica, "Microsoft Yahei", "\5FAE\8F6F\96C5\9ED1", Arial, STHeiti;
+  /* user-select: none;  */ }
+
+a {
+  color: #444;
+  text-decoration: none; }
+
+a[href^="javascript"] {
+  -webkit-touch-callout: none; }
+
+i, em, b, strong {
+  font-style: normal;
+  font-weight: normal; }
+
+input, textarea, select {
+  outline: none; }
+
+input, button, select, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0px; }
+
+li {
+  list-style: none; }
+
+img {
+  border: none; }
+
+.clearfix:after {
+  clear: both;
+  content: "";
+  display: block; }
+
+.clearfix {
+  *zoom: 1; }
+
+a.a_c {
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1); }
+
+a.a_c:active {
+  -webkit-transform: scale(0.95, 0.95);
+  -ms-transform: scale(0.95, 0.95);
+  transform: scale(0.95, 0.95); }
+
+[v-cloak] {
+  display: none; }
+body {
+  font-size: 0.3rem;
+  line-height: 0.44rem;
+  color: #323232; }
+
+.wifi_help_p {
+  margin: 1rem 0 0.8rem;
+  text-align: center; }
+
+.wifi_help_nav {
+  padding: 0 0.65rem; }
+  .wifi_help_nav li {
+    height: 0.44rem;
+    margin-bottom: 0.4rem; }
+    .wifi_help_nav li > i {
+      float: left;
+      width: 0.44rem;
+      height: 0.44rem;
+      line-height: 0.44rem;
+      margin-right: 0.15rem;
+      border-radius: 50%;
+      background-color: #00b79b;
+      color: #fff;
+      text-align: center; }
+
+.wifi_help_img {
+  margin: 0.8rem auto;
+  width: 5.2rem; }
+  .wifi_help_img img {
+    display: block;
+    width: 100%; }
