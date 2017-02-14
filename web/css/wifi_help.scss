@@ -1,0 +1,35 @@
+body{
+	font-size: 0.3rem;
+	line-height: 0.44rem;
+	color: #323232;
+}
+.wifi_help_p{
+	margin: 1rem 0 0.8rem;
+	text-align: center;
+}
+.wifi_help_nav{
+	padding: 0 0.65rem;
+	li{
+		height: 0.44rem;
+		margin-bottom: 0.4rem;
+		> i{
+			float: left;
+			width: 0.44rem;
+			height: 0.44rem;
+			line-height: 0.44rem;
+			margin-right: 0.15rem;
+			border-radius: 50%;
+			background-color: #00b79b;
+			color: #fff;
+			text-align: center;
+		}
+	}
+}
+.wifi_help_img{
+	margin: 0.8rem auto;
+	width: 5.2rem;
+	img{
+		display: block;
+		width: 100%;
+	}
+}
