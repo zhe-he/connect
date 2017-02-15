@@ -17,7 +17,7 @@ module.exports = {
 	},
 	// 入口文件输出配置
 	output: {
-		publicPath: `${ASSETS}/`,
+		publicPath: `./${ASSETS}/`,
 		path: path.resolve(__dirname, ASSETS),
 		filename: 'js/[name].js' //[chunkhash]
 	},

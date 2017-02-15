@@ -1,6 +1,6 @@
 {
-  "name": "bizdata-dashboard",
-  "version": "1.0.1",
+  "name": "connect",
+  "version": "1.0.0",
   "description": "This guy is too lazy to leave anything",
   "scripts": {
     "start": "webpack --progress --colors",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.ihangmei.com:H5-web/bizdata-dashboard.git"
+    "url": "http://git.ihangmei.com/App-Services-RD/connect"
   },
   "license": "ISC",
   "devDependencies": {
