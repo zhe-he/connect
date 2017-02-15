@@ -30,7 +30,12 @@ module.exports = {
 		new ExtractTextPlugin('/css/[name].css'), 	// 独立样式
 		new CopyWebpackPlugin([
 			{from: 'images/tmp/**/*'}
-		])
+		]),
+	    new webpack.optimize.UglifyJsPlugin({
+	      compressor: {
+	        warnings: false
+	      }
+	    }),
 	],
 	module: {
 		// jshint,代码优化时打开
