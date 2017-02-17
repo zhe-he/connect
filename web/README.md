@@ -10,3 +10,7 @@
 ###server 
 `npm run server` or `make server` or `node server` 	
 
+
+###webpack 1.x to webpack 2.x 	
+Because of the webpack update, so need to re npm install. 		
+If you meet the wrong, please contact [hezhe]((mailto:hezhe@ihangmei.com)).

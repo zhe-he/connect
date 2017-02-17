@@ -1,35 +1,46 @@
 /**
  * Created by zhe-he.
  */
-const fs = require('fs');
-const express=require('express');
-const bodyParser=require('body-parser');
-const multerLib=require('multer');
-const cookieParser=require('cookie-parser');
-const cookieSession=require('cookie-session');
-const consolidate=require('consolidate');
-// var multer=multerLib({dest:'upload'});
+var webpack = require("webpack");
+var webpackBase = require("./webpack.config.js");
+var cfg = Object.assign(webpackBase, {
+    devtool: "cheap-module-eval-source-map"
+});
 
-var app=express();
 var port = process.argv[2]?process.argv[2].replace('--',''):3332;
-app.listen(port);
 
-//使用中间件
-app.use(bodyParser.urlencoded({extended:false}));
-// app.use(multer.any());
-app.use(cookieParser());
-app.use(cookieSession({
-    name:'test-session',
-    keys:['dev','test'],
-    maxAge:20*60*1000
-}));
+//entry 
+Object.getOwnPropertyNames((webpackBase.entry || {})).map(function (name) {
+    cfg.entry[name] = []
+    	.concat("webpack/hot/dev-server")
+        .concat(`webpack-dev-server/client?http:\/\/localhost:${port}`)
+        .concat(webpackBase.entry[name])
+});
 
-// 接口
-// get post file cookie session
-// console.log(req.query,req.body,req.files,req.cookies,req.session);
+cfg.plugins = (webpackBase.plugins || []).concat(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+);
+module.exports = cfg;
 
-//静态资源
-app.use(express.static(`${__dirname}/www`));
+//server
+var webpackDevServer = require("webpack-dev-server");
+var compiler = webpack(cfg);
+
+//init server
+var app = new webpackDevServer(compiler, {
+    publicPath: cfg.output.publicPath,
+    contentBase: 'www/',
+    hot: true,
+    stats: { colors: true, chunks: false }
+});
+// 监听端口
+app.listen(port, 'localhost', function (err) {
+    if (err) {
+        console.log(err);
+    }
+});
+console.log(`listen at http:\/\/localhost:${port}`);
 
 var child_process = require('child_process');
 var cmd;
@@ -40,4 +51,4 @@ if (process.platform === 'win32') {
 } else if (process.platform === 'darwin') {
 	cmd = 'open';
 }
-child_process.exec(`${cmd} "http:\/\/localhost:${port}"`);
+child_process.exec(`${cmd} "http:\/\/localhost:${port}/webpack-dev-server/"`);
