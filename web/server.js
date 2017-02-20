@@ -13,7 +13,7 @@ var port = process.argv[2]?process.argv[2].replace('--',''):3332;
 Object.getOwnPropertyNames((webpackBase.entry || {})).map(function (name) {
     cfg.entry[name] = []
     	.concat("webpack/hot/dev-server")
-        .concat(`webpack-dev-server/client?http:\/\/localhost:${port}`)
+        .concat(`webpack-dev-server/client?http:\/\/0.0.0.0:${port}`)
         .concat(webpackBase.entry[name])
 });
 
@@ -35,7 +35,7 @@ var app = new webpackDevServer(compiler, {
     stats: { colors: true, chunks: false }
 });
 // 监听端口
-app.listen(port, 'localhost', function (err) {
+app.listen(port, '0.0.0.0', function (err) {
     if (err) {
         console.log(err);
     }

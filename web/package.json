@@ -1,6 +1,6 @@
 {
   "name": "connect",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "This guy is too lazy to leave anything",
   "scripts": {
     "start": "webpack --progress --colors",
@@ -54,6 +54,7 @@
     "vue-i18n": "^5.0.0",
     "vue-loader": "^11.0.0",
     "vue-style-loader": "^2.0.0",
+    "vue-template-compiler": "^2.1.10",
     "vuex": "^2.1.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0",

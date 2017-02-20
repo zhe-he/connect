@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,initial-scale=1.0">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+	<title>往返司机端微信</title>
+	<link rel="stylesheet" type="text/css" href="./css/common.css">
+	<link rel="stylesheet" type="text/css" href="./css/driver.css">
+	<script type="text/javascript" src="./js/common.js"></script>
+</head>
+<body>
+	<div v-cloak id="driver">
+		<article class="driver-bg">
+			<header class="logo_top flex">
+				<div></div>
+				<div>
+					<p>官方认证</p>
+					<p>2000万以上出行用户都在用</p>
+				</div>
+			</header>
+
+			<section class="driver-main">
+				<h2>往返送红利</h2>
+				<ul>
+					<li><i>1</i>连接往返WiFi，输入手机号并签到</li>
+					<li><i>2</i>吆喝乘客下载往返APP，并登录</li>
+				</ul>
+
+				<div class="driver-box">
+					<div class="driver-item">
+						<div class="input-box">
+							<input v-model="tel" class="tel" maxlength="11" placeholder="请输入手机号" type="tel" />
+							<p><i></i>必填</p>
+						</div>
+						<nav class="driver-btn">
+							<a :class="['a_c',isInTheCar?'active':'']" href="javascript:;">去签到</a>
+							<a class="a_c" href="javascript:;">查收入</a>
+						</nav>
+					</div>
+
+					<div class="driver-item hide">
+						<div class="input-box">
+							<input class="yzm" maxlength="6" placeholder="请输入验证码" type="tel" />
+							<a class="active" href="javascript:;">获取验证码</a>
+						</div>
+						<nav class="driver-btn">
+							<a class="a_c no_bg" href="javascript:;">返回</a>
+							<a class="a_c" href="javascript:;">验证</a>
+						</nav>
+					</div>
+
+				</div>
+			</section>
+
+			<div class="driver-mask hide"></div>
+			<div class="driver-mask-con hide">
+				<i class="bird"></i>
+				<section class="success hide">
+					<p>签到成功！</p>
+					<p>签到时间：2017年2月17日 16：15</p>
+				</section>
+				<section class="error">
+					<p>很遗憾！</p>
+					<!--网络不稳定，请重试-->
+					<p>您暂时未被选中为返红利的司机，<br/>敬请期待！</p>
+				</section>
+			</div>
+		</article>
+
+		<article class="driver-bg2 hide">
+			<header class="logo_top flex">
+				<div></div>
+				<div>
+					<p>官方认证</p>
+					<p>2000万以上出行用户都在用</p>
+				</div>
+			</header>
+
+			<section class="driver-detail hide">
+				<p><span>我的收入</span><span>累计:<i>120元</i></span></p>
+				<table class="driver-table">
+					<thead>
+						<tr><th>日期</th><th>总收入</th><th>是否到账</th></tr>
+					</thead>
+					<tfoot><tr><td colspan="3"></td></tr></tfoot>
+					<tbody>
+						<tr><td>2017.02.17</td><td>30元</td><td>是</td></tr>
+						<tr><td>2017.02.17</td><td>30元</td><td class="color_red">否</td></tr>
+						<tr><td>2017.02.17</td><td>30元</td><td>是</td></tr>
+						
+					</tbody>
+				</table>
+			</section>
+
+		</article>
+
+		<!-- <loading :status="1"></loading> -->
+	</div>
+	
+	<script type="text/javascript" src="./js/driver.js"></script>
+</body>
+</html>

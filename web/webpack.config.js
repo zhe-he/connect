@@ -25,11 +25,12 @@ var loaders = [
 module.exports = {
 	// 页面入口文件配置
 	entry: {
-		"wifi_help": commonJs.concat(['js/page/wifi_help.js'])
+		"wifi_help": commonJs.concat(['js/page/wifi_help.js']),
+		"driver": commonJs.concat(['js/page/driver.js'])
 	},
 	// 入口文件输出配置
 	output: {
-		publicPath: `./${ASSETS}/`,
+		publicPath: '../',
 		path: path.resolve(__dirname, ASSETS),
 		filename: 'js/[name].js' //[chunkhash]
 	},
@@ -39,8 +40,8 @@ module.exports = {
 	// 插件项
 	plugins: [
 		new CommonsChunkPlugin({
-			name: "common",
-			minChunks: 3
+			name: "common"
+			// ,minChunks: 3
 		}),
 		new ExtractTextPlugin('/css/[name].css'), 	// 独立样式
 		new CopyWebpackPlugin([
@@ -110,7 +111,11 @@ module.exports = {
 					use: loaders.concat({loader: 'less-loader'})
 				})
 			},
-			{test: /\.vue$/,exclude:/node_modules/,use: ['vue-loader']},
+			{
+				test: /\.vue$/,
+				exclude:/node_modules/,
+				use: ["vue-loader"]
+			},
 			{test: /\.(json|data)$/,exclude:/node_modules/,use: ['json-loader']},
 			{test: /\.(txt|md)$/,exclude:/node_modules/,use: ['raw-loader']},
 			{
@@ -139,6 +144,7 @@ module.exports = {
 			"vue": 				"js/lib/vue.common.js",
 			"echarts": 			"js/lib/echarts.common.js",
 			"dataFormat": 		"js/modules/dataFormat.js",
+			"loading": 			"js/vue/loading.vue",
 		}
 	}
 };
