@@ -112,19 +112,23 @@ new Vue({
 						this.setAlert(1,'您好','验证码发送成功 请查看短信');
 					}else{
 						this.setAlert(0,'很抱歉','验证码发送失败 请重试');
+						
+						this.resetCode();
 					}
 				})
 				.catch(err=>{
 					console.log(`err:${err}`);
 					this.setAlert(0,'很遗憾','网络连接错误 请重试');
+
+					this.resetCode();
 				});
 		},
 		getInfo(){
 			fetch(URL_GETINFO)
 				.then(response=>response.json())
-				.then(data=>{
+				.then((/*data*/)=>{
 					this.connectStatus = 1;
-					console.log(data);
+					// console.log(data);
 				})
 				.catch(err=>{
 					this.connectStatus = 0;
@@ -181,14 +185,17 @@ new Vue({
 			}
 			this.tabNav = 1;
 		},
+		resetCode(){
+			this.code.iCount = 60;
+			this.code.msg = '获取验证码';
+			clearInterval(this.code.timer);
+		},
 		sendCode(){
 			let _fn = ()=>{
 				if (this.code.iCount--) {
 					this.code.msg = `${this.code.iCount}s后重获取`;
 				}else{
-					this.code.iCount = 60;
-					this.code.msg = '获取验证码';
-					clearInterval(this.code.timer);
+					this.resetCode();
 				}
 			};
 
