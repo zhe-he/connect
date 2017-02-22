@@ -14,3 +14,8 @@
 ###webpack 1.x to webpack 2.x 	
 Because of the webpack update, so need to re npm install. 		
 If you meet the wrong, please contact [hezhe]((mailto:hezhe@ihangmei.com)).
+
+
+### how to use
+1. You need to perform `npm run watch`. 	
+2. next , `npm run server`. 	

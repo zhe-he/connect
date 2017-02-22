@@ -55,13 +55,12 @@ module.exports = {
 	],
 	module: {
 		rules: [
-			{test: /\.html$/,exclude:/node_modules/,use: ['pug-loader']},
-			{
+			// jshint,代码优化时打开
+			/*{
 				test: /\.js$/,
-				exclude:/(node_modules|bower_components|lib)/,
+				exclude:/(node_modules|lib)/,
 				use: [
-					// jshint,代码优化时打开
-					/*{
+					{
 						loader: "jshint-loader", 
 						options: { 
 						    "freeze": true, // 禁止覆盖本地对象
@@ -75,14 +74,18 @@ module.exports = {
 							"lastsemic": true // 最后的分号可以省略
 							// more see -> http://www.jshint.com/docs/options/
 						}
-					},*/
+					}
+				],
+				enforce: 'pre'
+			},*/
+			{test: /\.html$/,exclude:/node_modules/,use: ['pug-loader']},
+			{
+				test: /\.js$/,
+				exclude:/(node_modules|lib)/,
+				use: [
 					{
 						loader:'babel-loader',
-						options: {
-							presets: [
-								["es2015", { "modules": false }]
-							]
-						}
+						options: {presets: [["es2015", { "modules": false }]]}
 					}
 				]
 			},
@@ -114,7 +117,16 @@ module.exports = {
 			{
 				test: /\.vue$/,
 				exclude:/node_modules/,
-				use: ["vue-loader"]
+				use: [
+					{
+						loader: 'vue-loader',
+						options: {
+							loaders: {
+								'js': 'babel-loader?presets[]=es2015'
+							}
+						}
+					}
+				]
 			},
 			{test: /\.(json|data)$/,exclude:/node_modules/,use: ['json-loader']},
 			{test: /\.(txt|md)$/,exclude:/node_modules/,use: ['raw-loader']},
@@ -144,7 +156,9 @@ module.exports = {
 			"vue": 				"js/lib/vue.common.js",
 			"echarts": 			"js/lib/echarts.common.js",
 			"dataFormat": 		"js/modules/dataFormat.js",
+			"eventHub": 		"js/modules/eventHub.js",
 			"loading": 			"js/vue/loading.vue",
+			"driverAlert": 		"js/vue/driverAlert.vue",
 		}
 	}
 };

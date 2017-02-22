@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div v-cloak id="driver">
-		<article class="driver-bg">
+		<article :class="['driver-bg',pageNav==0?'':'hide']">
 			<header class="logo_top flex">
 				<div></div>
 				<div>
@@ -30,47 +30,33 @@
 				</ul>
 
 				<div class="driver-box">
-					<div class="driver-item">
+					<div :class="['driver-item',tabNav==0?'active':'']">
 						<div class="input-box">
 							<input v-model="tel" class="tel" maxlength="11" placeholder="请输入手机号" type="tel" />
 							<p><i></i>必填</p>
 						</div>
 						<nav class="driver-btn">
-							<a :class="['a_c',isInTheCar?'active':'']" href="javascript:;">去签到</a>
-							<a class="a_c" href="javascript:;">查收入</a>
+							<a class="a_c active" @click="registry()" href="javascript:;">去签到</a>
+							<a class="a_c" @click="checkIncome()" href="javascript:;">查收入</a>
 						</nav>
 					</div>
 
-					<div class="driver-item hide">
+					<div :class="['driver-item',tabNav==1?'active':'']">
 						<div class="input-box">
-							<input class="yzm" maxlength="6" placeholder="请输入验证码" type="tel" />
-							<a class="active" href="javascript:;">获取验证码</a>
+							<input class="yzm" maxlength="6" placeholder="请输入验证码" v-model="code.val" type="tel" />
+							<a :class="[code.iCount==60?'active':'']" @click="sendCode()" href="javascript:;">{{this.code.msg}}</a>
 						</div>
 						<nav class="driver-btn">
-							<a class="a_c no_bg" href="javascript:;">返回</a>
-							<a class="a_c" href="javascript:;">验证</a>
+							<a class="a_c no_bg" @click="tabNav=0" href="javascript:;">返回</a>
+							<a class="a_c" @click="verification()" href="javascript:;">验证</a>
 						</nav>
 					</div>
 
 				</div>
 			</section>
-
-			<div class="driver-mask hide"></div>
-			<div class="driver-mask-con hide">
-				<i class="bird"></i>
-				<section class="success hide">
-					<p>签到成功！</p>
-					<p>签到时间：2017年2月17日 16：15</p>
-				</section>
-				<section class="error">
-					<p>很遗憾！</p>
-					<!--网络不稳定，请重试-->
-					<p>您暂时未被选中为返红利的司机，<br/>敬请期待！</p>
-				</section>
-			</div>
 		</article>
 
-		<article class="driver-bg2 hide">
+		<article :class="['driver-bg2',pageNav==1?'':'hide']">
 			<header class="logo_top flex">
 				<div></div>
 				<div>
@@ -79,25 +65,22 @@
 				</div>
 			</header>
 
-			<section class="driver-detail hide">
-				<p><span>我的收入</span><span>累计:<i>120元</i></span></p>
+			<section class="driver-detail">
+				<p><span>我的收入</span><span>累计:<i>{{totalIncome}}元</i></span></p>
 				<table class="driver-table">
 					<thead>
 						<tr><th>日期</th><th>总收入</th><th>是否到账</th></tr>
 					</thead>
 					<tfoot><tr><td colspan="3"></td></tr></tfoot>
 					<tbody>
-						<tr><td>2017.02.17</td><td>30元</td><td>是</td></tr>
-						<tr><td>2017.02.17</td><td>30元</td><td class="color_red">否</td></tr>
-						<tr><td>2017.02.17</td><td>30元</td><td>是</td></tr>
-						
+						<tr v-for="item in income"><td>{{item.income_date|ymd}}</td><td>{{item.total_income}}元</td><td :class="item.is_payed==1?'':'color_red'" v-text="item.is_payed==1?'是':'否'"></td></tr>
 					</tbody>
 				</table>
 			</section>
-
 		</article>
 
-		<!-- <loading :status="1"></loading> -->
+		<driver-alert :title="driver.title" :is-hide="driver.isHide" :status="driver.status" :message="driver.message"></driver-alert>
+		<loading v-if="isLoading" :status="1"></loading>
 	</div>
 	
 	<script type="text/javascript" src="./js/driver.js"></script>

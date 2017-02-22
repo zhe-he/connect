@@ -1,212 +1,29 @@
 <template lang="pug">
 	div
 		.preload-box-mask(v-if="hasMask")
-		.preload-box(v-if="status!=2")
+		.preload-box
 			.preload-1(v-if="status==1")
 				span
 				span
 				span
 				span
 				span
-			.preload-2(v-if="status==3")
+			.preload-2(v-if="status==2")
 				span
 				span
 				span
 				span
-			.preload-3(v-if="status==4")
-			.preload-4(v-if="status==5")
+			.preload-3(v-if="status==3")
+			.preload-4(v-if="status==4")
 				span
 				span
 				span
 				span
 				span
-			.preload-5(v-if="status==6")
-		.loading(v-else)
-			.animate
-				.spinner
-					.spinner-container.container1
-						.circle1
-						.circle2
-						.circle3
-						.circle4
-					.spinner-container.container2
-						.circle1
-						.circle2
-						.circle3
-						.circle4
-					.spinner-container.container3
-						.circle1
-						.circle2
-						.circle3
-						.circle4
-				p(class="tip") 正在获取...
+			.preload-5(v-if="status==5")
 </template>
 
 <style lang="sass" scoped>
-	/*loading*/
-	.loading {
-	    width: 100%;
-	    height: 100%;
-	    position: fixed;
-	    top: 0;
-	    left: 0;
-	    z-index: 1100;
-	}
-	.loading .animate {
-	    width: 110px;
-	    height: 90px;
-	    border-radius: 6px;
-	    position: absolute;
-	    top: 60%;
-	    left: 50%;
-	    margin: -100px 0 0 -45px;
-	    z-index: 2000;
-	    background: rgba(51, 51, 51, .9);
-	}
-	.spinner {
-	    margin: 0 auto;
-	    margin-top: 13px;
-	    width: 40px;
-	    height: 40px;
-	    position: relative;
-	}
-
-	.container1 > div,
-	.container2 > div,
-	.container3 > div {
-	    width: 10px;
-	    height: 10px;
-	    background-color: #fff;
-	    border-radius: 100%;
-	    position: absolute;
-	    -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
-	    animation: bouncedelay 1.2s infinite ease-in-out;
-	    -webkit-animation-fill-mode: both;
-	    animation-fill-mode: both;
-	}
-
-	.spinner .spinner-container {
-	    position: absolute;
-	    width: 100%;
-	    height: 100%;
-	}
-
-	.container2 {
-	    -webkit-transform: rotateZ(45deg);
-	    transform: rotateZ(45deg);
-	}
-
-	.container3 {
-	    -webkit-transform: rotateZ(90deg);
-	    transform: rotateZ(90deg);
-	}
-
-	.circle1 {
-	    top: 0;
-	    left: 0;
-	}
-
-	.circle2 {
-	    top: 0;
-	    right: 0;
-	}
-
-	.circle3 {
-	    right: 0;
-	    bottom: 0;
-	}
-
-	.circle4 {
-	    left: 0;
-	    bottom: 0;
-	}
-
-	.container2 .circle1 {
-	    -webkit-animation-delay: -1.1s;
-	    animation-delay: -1.1s;
-	}
-
-	.container3 .circle1 {
-	    -webkit-animation-delay: -1.0s;
-	    animation-delay: -1.0s;
-	}
-
-	.container1 .circle2 {
-	    -webkit-animation-delay: -0.9s;
-	    animation-delay: -0.9s;
-	}
-
-	.container2 .circle2 {
-	    -webkit-animation-delay: -0.8s;
-	    animation-delay: -0.8s;
-	}
-
-	.container3 .circle2 {
-	    -webkit-animation-delay: -0.7s;
-	    animation-delay: -0.7s;
-	}
-
-	.container1 .circle3 {
-	    -webkit-animation-delay: -0.6s;
-	    animation-delay: -0.6s;
-	}
-
-	.container2 .circle3 {
-	    -webkit-animation-delay: -0.5s;
-	    animation-delay: -0.5s;
-	}
-
-	.container3 .circle3 {
-	    -webkit-animation-delay: -0.4s;
-	    animation-delay: -0.4s;
-	}
-
-	.container1 .circle4 {
-	    -webkit-animation-delay: -0.3s;
-	    animation-delay: -0.3s;
-	}
-
-	.container2 .circle4 {
-	    -webkit-animation-delay: -0.2s;
-	    animation-delay: -0.2s;
-	}
-
-	.container3 .circle4 {
-	    -webkit-animation-delay: -0.1s;
-	    animation-delay: -0.1s;
-	}
-
-	@-webkit-keyframes bouncedelay {
-	    0%,
-	    80%,
-	    100% {
-	        -webkit-transform: scale(0.0)
-	    }
-	    40% {
-	        -webkit-transform: scale(1.0)
-	    }
-	}
-
-	@keyframes bouncedelay {
-	    0%,
-	    80%,
-	    100% {
-	        transform: scale(0.0);
-	        -webkit-transform: scale(0.0);
-	    }
-	    40% {
-	        transform: scale(1.0);
-	        -webkit-transform: scale(1.0);
-	    }
-	}
-	.animate .tip {
-	    text-align: center;
-	    font-size: 12px;
-	    color: #fff;
-	    margin-top: 15px;
-	}
-
-
 	.preload-box-mask{
 	  z-index: 1000;
 	  position: fixed;
@@ -693,7 +510,7 @@
 		props: {
 			hasMask: {
 				type: Boolean,
-				default: false
+				default: true
 			},
 			status: {
 				type: Number | String,
