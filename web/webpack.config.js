@@ -34,14 +34,11 @@ module.exports = {
 		path: path.resolve(__dirname, ASSETS),
 		filename: 'js/[name].js' //[chunkhash]
 	},
-	devServer: {
-
-	},
 	// 插件项
 	plugins: [
 		new CommonsChunkPlugin({
-			name: "common"
-			// ,minChunks: 3
+			name: "common",
+			minChunks: 3
 		}),
 		new ExtractTextPlugin('/css/[name].css'), 	// 独立样式
 		new CopyWebpackPlugin([
