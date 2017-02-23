@@ -228,7 +228,8 @@ new Vue({
 					this.isLoading = false;
 					if (data.errorCode===0) {
 						this.pageNav = 1;
-						this.income = data.data;
+						this.code.val = '';
+						this.income = data.data || [];
 					}else if(data.errorCode===100) {
 						this.setAlert(0,'很遗憾','服务器连接不上 请重试');
 					}else{
