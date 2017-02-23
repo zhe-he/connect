@@ -229,7 +229,10 @@ new Vue({
 					if (data.errorCode===0) {
 						this.pageNav = 1;
 						this.code.val = '';
-						this.income = data.data || [];
+						let income = data.data || [];
+						income.sort((a,b)=>a.income_date-b.income_date);
+						this.income = income;
+
 					}else if(data.errorCode===100) {
 						this.setAlert(0,'很遗憾','服务器连接不上 请重试');
 					}else{
