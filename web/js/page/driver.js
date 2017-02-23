@@ -22,6 +22,7 @@ new Vue({
 	el: '#driver',
 	data: {
 		tel: '',
+		deviceMac: '',
 		isLoading: false,
 		code: {
 			val: '',
@@ -76,7 +77,7 @@ new Vue({
 				headers:{
 					"Content-Type": "application/x-www-form-urlencoded"
 				},
-				body: `driverMobile=${telephone}`
+				body: `driverMobile=${telephone}&deviceMac=${this.deviceMac}`
 			})
 				.then(response=>response.json())
 				.then(data=>{
@@ -126,9 +127,9 @@ new Vue({
 		getInfo(){
 			fetch(URL_GETINFO)
 				.then(response=>response.json())
-				.then((/*data*/)=>{
+				.then((data)=>{
 					this.connectStatus = 1;
-					// console.log(data);
+					this.deviceMac = data.deviceMac;
 				})
 				.catch(err=>{
 					this.connectStatus = 0;
