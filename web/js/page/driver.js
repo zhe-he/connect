@@ -5,7 +5,7 @@ import loading from 'loading';
 import driverAlert from 'driverAlert';
 import dataFormat from 'dataFormat'; 
 
-const HOST = "http://139.217.24.107:8080";
+const HOST = "http://139.217.2.108:8080";
 const URL_GETINFO = 'http://www.wangfanwifi.com:16621/api/getinfo';
 const URL_CHECK = `${HOST}/driver/mobile/check`;
 const URL_SIGNIN = `${HOST}/driver/signIn`;
