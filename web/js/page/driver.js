@@ -22,7 +22,7 @@ new Vue({
 	el: '#driver',
 	data: {
 		tel: '',
-		deviceMac: '',
+		devMac: '',
 		isLoading: false,
 		code: {
 			val: '',
@@ -77,7 +77,7 @@ new Vue({
 				headers:{
 					"Content-Type": "application/x-www-form-urlencoded"
 				},
-				body: `driverMobile=${telephone}&deviceMac=${this.deviceMac}`
+				body: `driverMobile=${telephone}&devMac=${this.devMac}`
 			})
 				.then(response=>response.json())
 				.then(data=>{
@@ -129,7 +129,7 @@ new Vue({
 				.then(response=>response.json())
 				.then((data)=>{
 					this.connectStatus = 1;
-					this.deviceMac = data.deviceMac;
+					this.devMac = data.deviceSN || data.deviceMac;
 				})
 				.catch(err=>{
 					this.connectStatus = 0;
@@ -146,7 +146,8 @@ new Vue({
 			}
 			switch(this.connectStatus){
 				case -1:
-					this.setAlert(1,'亲爱的司机','网络识别中 请稍后再试');
+					// 404 is long time ,so this message is same as next message.
+					this.setAlert(1,'亲爱的司机','请连接往返WiFi再签到');
 					return false;
 				case 0:
 					this.setAlert(1,'亲爱的司机','请连接往返WiFi再签到');
