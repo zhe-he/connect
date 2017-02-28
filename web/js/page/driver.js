@@ -231,6 +231,7 @@ new Vue({
 						this.pageNav = 1;
 						this.code.val = '';
 						let income = data.data || [];
+						income = income.filter(item=>item.total_income>0);
 						income.sort((a,b)=>a.income_date-b.income_date);
 						this.income = income;
 
