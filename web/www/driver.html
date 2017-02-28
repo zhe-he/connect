@@ -6,7 +6,7 @@
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
-	<title>往返司机端微信</title>
+	<title>往返司机送红利</title>
 	<link rel="shortcut icon" type="image/ico" href="favicon.ico" />
 	<link href="apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed">
 	<link rel="stylesheet" type="text/css" href="./css/driver.css">
@@ -68,7 +68,7 @@
 
 			<section class="driver-detail">
 				<p><span>我的收入</span><span>累计:<i>{{totalIncome}}元</i></span></p>
-				<table class="driver-table">
+				<table v-show="income.length>0" class="driver-table">
 					<thead>
 						<tr><th>日期</th><th>总收入</th><th>是否到账</th></tr>
 					</thead>
@@ -78,6 +78,7 @@
 					</tbody>
 				</table>
 			</section>
+			<p v-show="income.length==0" class="driver-tip">温馨提示：您还没有收入，请邀请乘客下载往返App并登录。加油，红包马上到碗里来！</p>
 
 			<a @click="pageNav=0" class="driver-close" href="javascript:;">关闭</a>
 		</article>
