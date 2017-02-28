@@ -11,7 +11,10 @@ html{
   font-family: sans-serif, Tahoma, Helvetica, "Microsoft Yahei", "微软雅黑", Arial, STHeiti; 
   /* user-select: none;  */
 }
-
+body{
+  max-width: 750px;
+  margin: 0 auto;
+}
 a{
   color: #444;
   text-decoration: none; 
